@@ -1,0 +1,524 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage[a4paper,left=1.5in,right=1in,top=1in,bottom=1in]{geometry}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes,fit,arrows}
+\definecolor{myblue}{RGB}{56,94,141}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{etoolbox}
+%\apptocmd{\thebibliography}{\csname phantomsection \endcsname \addtocontentsline{toc}{chapter}{\bibname}}{}{}
+\usepackage{caption}
+\usepackage{float}
+\floatstyle{boxed} 
+\restylefloat{figure}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\footnotesize \center your seminar title }
+\fancyfoot[CE,CO]{ \raggedright{P:F-SMR-UG/08/R0} }
+\fancyfoot[LE,RO]{\thepage}
+
+\begin{document}
+ 
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+        
+        \large
+                \textbf{Pune Institute of Computer Technology}	
+                \linebreak
+		\textbf{Dhankawadi, Pune}
+        \vspace{0.5cm}
+                        \linebreak
+                        \linebreak
+        \textbf{A SEMINAR REPORT }
+        \linebreak
+        \textbf{ON }
+        \linebreak
+        \vspace{0.5cm}
+        \large
+        \\ENHANCING CLOUD ANOMALY DETECTION THROUGH FEATURE EXTRACTION 
+        \linebreak
+        \linebreak
+		
+		%\vspace{0.2cm}
+		\textbf{SUBMITTED BY}
+		\vspace{1cm}
+		
+        \textbf{ Name }
+        \\ Roll No. ...
+        \\ Class ...
+        \linebreak
+        \linebreak
+		        
+        \textbf{\large{Under the guidance of}}
+		\linebreak
+	    Prof. Guide Name
+		\linebreak
+      %  \vfill
+        
+        
+        
+        \vspace{0.8cm}
+        
+
+        \includegraphics[scale=0.6]{pict}   
+        
+        \Large
+        DEPARTMENT OF COMPUTER ENGINEERING\\
+%        \textbf{Pune Institute of Computer Technology}	
+%		\textbf{Dhankawadi, Pune}
+%		\linebreak
+		\textbf{Academic Year 2019-20}
+        
+    \end{center}
+\end{titlepage}
+\pagebreak
+%2
+\begin{titlepage}
+\begin{center}
+	\includegraphics[scale=0.6]{pict} 
+	\linebreak
+	\Large
+        DEPARTMENT OF COMPUTER ENGINEERING\\
+        \textbf{Pune Institute of Computer Technology}
+		\linebreak
+		\textbf{Dhankawadi, Pune-43}
+		\vspace{0.8cm}
+		\Large
+		
+	    \textbf{CERTIFICATE}
+	    		\linebreak
+	    \linebreak
+		This is to certify that the Seminar report entitled
+        \linebreak
+		\linebreak
+		\large
+		\textbf{“SEMINAR TITLE”}
+		\linebreak
+		\linebreak
+		Submitted by
+		\linebreak
+		Your Name \hspace{10mm}   Roll No. ... \linebreak
+		\linebreak
+		has satisfactorily completed a seminar report under the guidance of Prof. -----  towards the partial fulfillment of third year Computer Engineering Semester II, Academic Year 2019-20 of Savitribai Phule Pune University. 
+		\linebreak
+		\linebreak
+		\linebreak
+		\linebreak
+		\linebreak
+		\begin{table}[h]
+		\begin{tabular}{ccc}
+		Prof. ----    &                        &  \hspace{52mm} Prof. M.S.Takalikar\\
+		Internal Guide      &                     &    \hspace{52mm} Head \\
+		          &                         &       \hspace{47mm} Department of Computer Engineering \\
+                    &                       & \hspace{52mm} 
+		\end{tabular}
+		\end{table}
+		\end{center}
+Place:\\
+Date:
+
+\end{titlepage} 
+
+\pagenumbering{Roman}
+\section*{ACKNOWLEDGEMENT}
+
+\hspace{0.5cm} I sincerely thank our Seminar Coordinator Prof. B.D.Zope and Head of Department Prof. M.S.Takalikar
+for their support.
+\vspace{0.25cm}
+\par I also sincerely convey my gratitude to my guide Prof. ------, Department of Computer Engineering for her constant
+support, providing all the help, motivation and encouragement from beginning till end to make this seminar a grand success.
+\vspace{0.25cm}
+\par SAMPLE TEXT. In case you want to add something.
+
+\newpage
+\tableofcontents
+
+\newpage
+\listoftables
+\listoffigures
+
+\newpage
+
+\section*{Abstract}
+In Computer Engineering Machine learning is being used in a wide range of application domains to discover patterns in large datasets. Machine learning consolidation with cloud computing is increasing day by day. With increase of data over cloud and managing of data has involved other technology like machine learning, deep learning to increase security of cloud data.
+\par 
+Cloud computing is the latest trend in business for providing software, platforms and services over the Internet. However, a widespread adoption of this paradigm has been hampered by the lack of security mechanisms. In view of this, the aim of this work is to propose a new approach for detecting anomalies in cloud network traffic. The anomaly detection mechanism works on the basis of a Support Vector Machine (SVM). The key requirement for improving the accuracy of the SVM model, in the context of cloud, is to reduce the total amount of data.
+\par
+The labelled data set has label that help in extracting feature and decrease overall data set.For data collection cloud has to be monitored. For feature extraction Poison Moving Average is being used.  
+\section*{Keywords}
+k1, k2, k3.
+\newpage
+\pagenumbering{arabic}
+\begin{center}
+\section{INTRODUCTION}
+\end{center}
+\par
+Cloud environments have nowadays evolved as the critical backbone for a number of socio-economical ICT infrastructures, due to their intrinsic capabilities such as elasticity and resource transparency. Consequently, they are becoming increasingly mission-critical since they provide always-on services for many every-day applications (e.g. IPTV), safety-critical operations, critical manufacturing services, and critical real-time services.
+ \\ 
+ 
+\par
+Cloud computing has become increasingly popular by obviating the need for users to own and maintain complex computing infrastructure. However, due to their inherent complexity and large scale, production cloud computing systems are prone to various runtime problems caused by hardware and software failures. Cloud anomaly detection is a technique of detecting anomalous behavior of network date being collected . To detect anomalies, we need to monitor the cloud execution and collect runtime performance data and network flow over cloud. These data are usually partially labeled, and thus a prior failure history is not always available in production clouds, especially for newly managed or deployed systems.
+\\
+
+\par Infrastructure items, such as hosts, can be broken into by a competing company to attain confidential information about its users and other data that is stored on the machine. This in turn allows workflows to be changed, i.e. by breaking in a system and patching the code-base or the platform itself, or simply by reverse engineering workflows and creating rogue clients.
+\\
+
+\par 
+Another problem is that attacks themselves have become sneakier. Attackers tend to use more advanced techniques, and more persistence to eventually mask an attack. For example, if credentials of legitimate service users are stolen and information is leaked gradually and persistently over a longer time period. Such attacks usually manifest in a change of behavior of entities involved in any given activity (e.g. behavioural changes observed in off-key working hours, spiking access over document data etc.). To decrease the chance of successful attacks, security monitoring was introduced to analyse events committed by sensors in the corporate network. The analysis of events usually involves signature-based methods. Features, extracted from logged event data, are compared to features in attack signatures which in turn are provided by experts Other approaches, e.g. anomaly detection, often make use of machine learning-based algorithms. Anomalies are an unexpected event (or a series of unexpected events) that exhibit a significant change in behaviour of an entity, for example, a user. If anomalous behavior can be distinguished from normal behavior by hard bounds that are known beforehand, then signature-based approaches can be used to classify attacks immediately. However, when it is hard to specify all entities and their normal behaviour completely beforehand, then statistical measures have to be used to classify deviations in order to detect possible attacks.
+\\
+
+\par
+Unfortunately, probabilities and patterns of unwanted behaviour are very hard to procure. But it is reasonable to assume that most activity in a network is not triggered by compromised machines and attacks are represented by only a tiny fraction of the overall behaviour. 
+\\
+
+\par
+Many machine learning algorithms proposes techniques to classify malwares but
+the true challenge lies with the fact that classification model must be dynamic
+in nature as the malwares are generated within seconds and its nature could be
+different from the generic ones which is impossible for a static analysis system to
+identify followed by classification during that moment.
+
+
+\newpage
+\begin{center}
+
+\section{MOTIVATION}
+
+\end{center}
+
+\hspace{1cm}
+With the time evolvement of time IT services and all area infrastructures are shifting to cloud services, as cloud provides such facilities of availability, storage as well computing environment. Cloud has got immense increased amount of data over it so managing that data is being a major concern over these days. Since hackers have been trying new phenomenon or procedures to get some data and malicious adding to those dataset. So machine learning is one of the solution of such a problem where we are unaware of which type of attacks exists in this field. To analyse the pattern in the dataset being used and find anomalous happenings. \\
+
+  
+
+\hspace{1cm} 
+In recent times successful attacks on machine learning has happened . These attacks compromise machine learning algorithms. Such compromising attacks are very sensitive whic can lead to big disasterous result\\
+
+\hspace{1cm} Anomaly in data is getting common so detecting anomalies is the major task. Apart from normal available patterns in data new patterns are to be detected which brings a challenge for machine learning. Efficiency of detection and dynamic detection over data is also a challenge
+\\
+
+\hspace{1cm} Thus, for effective counter measure for these poisoning attacks , to find easiest algorithm to defend through the counter attack and to make sure the effectiveness of machine learning algorithms are  maintained this is needed\\
+
+\newpage
+\begin{center}
+
+\section{LITERATURE SURVEY}
+
+\end{center}
+
+The Following table shows the literature survey by comparing techniques propose in various references:
+
+\begin{center}
+\begin{flushleft}
+
+\begin{table}[h!]
+ \caption{Literature survey}
+ \begin{tabular}{|l|l|c|l|l|l|}
+\hline
+ No.
+ & Techniques 
+ & Cloud scenario  
+ & Feature extracted  
+ & dataset 
+ & limitations  \\ 
+ \hline
+ 1 
+ & \begin{tabular}[c]{@{}l@{}}Poisoning\\ Moving \\Average,\\  Support \\vector\\ machine  \end{tabular} 
+ & \begin{tabular}[c]{@{}l@{}}yes \end{tabular} 
+ & \begin{tabular}[c]{@{}l@{}}Protocol type,\\ port number,\\ packet size,\\ number of\\ packets\end{tabular}
+ & \begin{tabular}[c]{@{}l@{}}DARPA, \\CMU \end{tabular}     
+ & \begin{tabular}[c]{@{}l@{}}classifies\\data\\ into 2\\  classes\\ only \end{tabular} \\ \hline
+
+4 &\begin{tabular}[c]{@{}l@{}}Decision tree \\classifier,\\ Maximal
+relevance \\and
+minimal \\redundancy
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}yes \end{tabular}   
+ &\begin{tabular}[c]{@{}l@{}}CPU usage, \\memory\\ ,swap\\ utilization,\\ paging
+and\\ paging \\faults
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}Own Dataset,\\ KDD \end{tabular}    & \begin{tabular}[c]{@{}l@{}}It uses \\its own \\ dataset so\\ specialised\\ data\\ accuracy\\is not\\ there \end{tabular}\\
+ \hline
+
+3 &\begin{tabular}[c]{@{}l@{}}Event correlatio.\\ ANN
+
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}yes \end{tabular}   
+ &
+ \begin{tabular}[c]{@{}l@{}}User logs and \\signature
+
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}Own Dataset,\\ KDD \end{tabular}     & \begin{tabular}[c]{@{}l@{}}Features\\ extracted\\ are on\\ the basis\\ of own\\ dataset\\ used.\end{tabular}\\
+ \hline
+ 2 &\begin{tabular}[c]{@{}l@{}}Genetic algorithm,\\ SVM
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}No \end{tabular}   
+ & \begin{tabular}[c]{@{}l@{}}Protocol, \\source port, \\destination\\port, IP, \\TTL
+ \end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}DARPA \end{tabular}   
+ & \begin{tabular}[c]{@{}l@{}}Cloud\\ deployment\\ is not\\ done. \end{tabular}\\\hline
+ 
+  5 &\begin{tabular}[c]{@{}l@{}}Hierarchical \\clustering\\
+Algorithm,\\ SVM\end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}No \end{tabular}   
+ &
+ \begin{tabular}[c]{@{}l@{}}Protocol,\\ duration of \\connection,\\
+status\end{tabular}  
+ & \begin{tabular}[c]{@{}l@{}}DARPA\end{tabular}   
+ & \begin{tabular}[c]{@{}l@{}}cloud\\ deployment\\ not\\ present\\ and\\ efficiency\\ is less \end{tabular}\\ \hline
+
+ 
+
+ \end{tabular}
+
+\end{table}                             
+
+
+%\\
+%\\
+
+
+\end{flushleft}
+\end{center}
+
+\newpage
+\begin{center}
+\section{A SURVEY ON PAPERS}
+\end{center}
+\subsection{A hybrid machine learning approach to network
+anomaly detection}
+\hspace{1cm} The field selection from the dataset is being done by genetic algorithm in this paper. 
+For the first operation, the method transform TCP/IP packets into binary gene strings. We convert each TCP and IP
+header field into a bit binary gene value, ‘0’ or ‘1’. ‘1’ means that the corresponding field exists and ‘0’ means it
+does not. The initial population consists of a set of randomly generated 24-bit strings, including 13 bits for IP
+fields and 11 bits for TCP fields. The total number of individuals in the population should be carefully considered.
+If the population size is too small, then all gene chromosomes soon converge into the same gene
+string, making it impossible for the genetic model to generate new individuals. In contrast, if the population
+size is too large, then the model spends too much time calculating gene strings, negatively affecting the overall
+effectiveness of the method.
+\par Two existing SVM methods: soft margin SVM and one-class SVM are introduced to find anomaly. The SVM is generally used as a supervised learning method. In order to decrease misclassified data, a supervised SVM approach with a slack variable is called soft margin SVM. Additionally, single class learning for classifying outliers can be used as an unsupervised SVM. After considering both SVM learning schemes.
+
+\subsection{CIDS: A framework for intrusion detection
+in cloud systems}
+\hspace{1cm}  
+Each node has two IDSs detectors, CIDS and HIDS. In this way, the node can cooperatively participate in intrusion detection by identifying the local events that could represent security violations and by exchanging its audit data with other nodes.
+the sharing of information among the following CIDS components:
+\textbf{Cloud nodes}: contains the resources homogeneously accessed through the cloud middleware.
+\textbf{Guest task}: it is a sequence of actions and commands submitted by a user to an instance of VM.
+\textbf{Logs and audit collector}: it acts as a sensor for both CIDS and HIDS detectors and collects logs, audit data, and sequence of user actions and commands.
+\textbf{VM}: it encapsulates the system to be monitored using VMM. The detection mechanisms are implemented outside the VM, i.e. out of reach of intruders. A single instance of a VM monitors can observe several VMs.
+
+
+\subsection{Performance Metric Selection for Autonomic
+Anomaly Detection on Cloud Computing Systems}
+\hspace{1cm} 
+To make the anomaly detection tractable and yield high
+accuracy, the paper apply dimensionality reduction, which transforms
+the collected health data to a new metric space with only
+the more relevant attributes preserved. We apply two
+approaches to reducing dimensionality: metric selection using
+mutual information and metric extraction by principal component
+analysis.\\
+
+
+\subsection{A SVM Model based on Network Traffic Prediction for Detecting Anomalies}
+\hspace{1cm} The purpose of our Anomaly Detection Mechanism is to provide an efficient
+method to detect anomalies in the cloud-based network traffic. Figure
+1 depicts the basis of our mechanism, by highlighting the application
+scenario and the main conceptual components.\\
+The cloud provider offers several services by the Internet, such as infrastructure,
+software and platform to the clients. Real-time cloud traffic
+data (Flow 1) is continuously being gathered from the cloud environment
+by the Cloud Monitoring module. This information is subsequently processed
+by the Poisson-based Predictor that performs prediction based on
+information such as the protocol type, the number of network packets and
+timestamp.\\
+After that, the SVM Model is fed with features extracted from the
+predicted data. Then, the SVM Model triggers a warning to the
+Event Auditor when an anomalous behaviour is detected. In
+the meantime, the Repository of Outcomes component stores a detailed
+output regarding the historic of the Virtual Machine (VM) operation. Furthermore, the Event Auditor represents an agent placed in the VM
+that is able to communicate collaboratively with agents in the other VMs.
+This agent receives any anomalous event from the SVM Model and builds
+a message with information of all components for sending alerts
+to other agents.
+Having presented an overview of the anomaly detection mechanism,
+in the following subsections there will be a more detailed description of
+the forecasting approach for estimating network traffic on the basis of
+a Poisson process and the Support Vector Machine model for detecting
+anomalies in the cloud-based environment.
+
+
+
+
+\newpage
+\begin{center}
+\section{PROBLEM DEFINITION AND SCOPE}
+\end{center}
+
+\subsection{Problem Definition}
+
+\hspace{1.5cm} To design a system to extract the meaningful features from large dataset to increase the efficiency of anomaly detection.
+
+\subsection{Scope}
+
+\hspace{1.5cm} The successful attacks causing damages have a high level of effect on the result. Hence to lower down this effect countermeasure play an important role which surpasses the damage done. These countermeasure are responsible for maintaining the effectiveness of results in machine learning \\
+
+\hspace{1.5cm} For the above purpose selection of labels from data set is most important task, whole functioning depends on selection of labels. As if wrong features or labels get selected then it will have adverse effect on system performance.
+\hspace{1.5cm} Result of anomaly detection will purely depend on how we select the labels to go ahead for other operations.
+\newpage
+\begin{center}
+\section{DIFFERENT MACHINE LEARNING ALGORITHM}
+\end{center}
+\subsection{Support Vector Machine (SVM)}
+\par
+\hspace{1cm}
+It is mostly used in classification problems. In this algorithm, we plot each data item as a point in n-dimensional space (where n is number of features you have) with the value of each feature being the value of a particular coordinate. It has high prediction
+accuracy and performance rate but is limited to two classified classes only.
+%\\
+%\\
+\subsection{Decision Tree classifiers}
+\par
+\hspace{1cm}
+It repetitively divides
+the working area(plot)
+into sub part
+by identifying
+lines.Operations are
+carried with
+optimization.Effciency reduces
+with increase
+in dataset.
+\\
+\\
+
+
+\subsection{KNN}
+\par 
+%\hspace
+A simple algorithm
+that stores
+all available
+cases and classifies
+new cases
+based on
+a similarity
+measure (e.g.,
+distance functions)
+Based on optimal
+solution
+time complexity
+is quite
+high.
+\newpage
+\begin{center}
+\section{METHODOLOGY}
+
+\end{center}
+\subsection{Workflow}
+\includegraphics[width=\linewidth]{pict}
+\captionof{figure}{This is placeholder image: Workflow}
+\newpage
+\subsection{Mathematical model}
+\par
+S = \{s, e, X, Y, $f_{main}$, $f_f$, DD, NDD, $mem_{sh}$ $\vert$  $\phi$ \}\\\\
+ s: start state.\\
+ e: end state.\\
+
+Let X be the input set consisting of:-  X = $L_i$\\
+where L is the collected Log from monitoring cloud \\
+Let Y be the output set consisting of:-\\
+Y = {C,P} where C $\in$ Cl is class defined as anomaly. \\\\
+
+\par
+\textbf{Functions}\\\\
+$f_{main}$ - Let ’k’ be the function to detect the anomaly  such  that:-\\
+\\
+k : log dataset $\rightarrow$  {P}\\
+\\
+$f_{f}$ : { $f_{1}$, $f_{2}$ }\\
+\\
+$f_{1}$= Cloud Monitoring functions for collecting data\\
+\\
+$f_{2}$= Anomaly detection function\\
+\\
+\textbf{Success- Failure Rate}\\
+
+$\#$ P = normal\\
+$P = {\phi}$ \\or\\ \# P $\neq$ normal
+
+			
+		
+
+\newpage
+\section{Results}
+\subsection{Data}
+\begin{table}[h!]
+\centering
+\caption{Data Table}
+\begin{tabular}{|l|l|l|}
+\hline
+S.No &Data set  &size  \\ \hline
+1 &KDD1998  &43.5 MB  \\ \hline
+ 2& KDD 1999 &75.3 MB  \\ \hline
+\end{tabular}
+%\caption{Data Table}
+\label{my-label}
+\end{table}
+\subsection{Implementation Results}
+\includegraphics[scale=0.5]{pict}
+\captionof{figure}{This is placeholder image: Result of KDD 1998 dataset}
+\includegraphics[scale=0.5]{pict}
+\captionof{figure}{This is placeholder image: Result of KDD 1999 dataset}
+\newpage
+\begin{center}
+\section{CONCLUSION}
+\end{center}
+\par
+Feature extraction process can affect the system in both ways if the process is not carried out carefully. As features in machine learning is among the important factors which affects the system performance. Feature extraction along with supervised learning algorithm can improve the performance of anomaly detection system to an extent. Reducing the dataset through feature extraction make easy for learning algorithm to focus on important feature and get the work done  
+\\
+
+\newpage
+%
+%\bibliography{biblio}
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{plain}
+
+\begin{thebibliography}{21}
+\bibitem{paper1} Dalmazo, Bruno L., et al. "Expedite feature extraction for enhanced 	cloud anomaly detection." Network Operations and Management 	Symposium (NOMS), 2016 " \textit{IEEE/IFIP. IEEE, 2016}.
+
+\bibitem{paper2} T. Shon and J. Moon, “A hybrid machine learning approach to 	network anomaly detection,” Information Sciences, vol. 177, no. 18, 	pp. 3799 – 3821, 2007. [Online]. Available.
+
+\bibitem{paper3} H. Kholidy and F. Baiardi, “CIDS: A framework for intrusion 	detection in cloud systems,” in Ninth International Conference on 	InformationTechnology: New Generations (ITNG), 2012, April 2012, 	pp. 379–385.
+
+\bibitem{paper4} Fu, Song. "Performance metric selection for autonomic anomaly 	detection on cloud computing systems." Global Telecommunications 	Conference (GLOBECOM 2011), 2011 IEEE. IEEE, 2011.
+
+\bibitem{paper5} S.-J. Horng, M.-Y. Su, Y.-H. Chen, T.-W. Kao, R.-J. Chen, J.-L. Lai,	and C. D. Perkasa, “A novel intrusion detection system based on 	hierarchical clustering and support vector machines,” Expert Systems 	with Applications, vol. 38, no. 1, pp. 306 – 313, 2011.
+
+
+\bibitem{paper6} P. Ganeshkumar and N. Pandeeswari, “Adaptive neuro-fuzzy-based 	anomaly detection system in cloud,” International Journal of Fuzzy 	Systems, pp. 1–12, 2015.
+
+
+\bibitem{paper7}B. L. Dalmazo, J. P. Vilela, and M. Curado, “Online traffic prediction 	in the cloud: A dynamic window approach,” in The 2nd International 	Conference on Future Internet of Things and Cloud (FiCloud’2014), 	Aug 2014, pp. 9–14.
+
+
+
+\end{thebibliography}
+
+\newpage
+
+attach your review and visit log here......
+
+\newpage
+
+attach  plagiarism report here.....
+
+\end{document}
+

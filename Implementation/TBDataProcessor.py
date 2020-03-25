@@ -7,7 +7,7 @@ Created on Mon Mar 23 11:45:02 2020
 
 import pandas as pd;
 
-dataset = pd.read_csv('Book1.csv',encoding='latin-1')
+dataset = pd.read_csv('Twitter_Dataset.csv',encoding='latin-1')
 
 X = dataset.iloc[:,[2,4,18]].values
 y = dataset.iloc[:,19].values
@@ -59,3 +59,24 @@ X_f = merge(X_scname,X_name)
 from sklearn.model_selection import train_test_split
 X_ftrain,X_ftest,y_ftrain,y_ftest = train_test_split(X_f, y)
 
+from sklearn.linear_model import LogisticRegression
+classifier = LogisticRegression()
+classifier.fit(X_ftrain,y_ftrain)
+
+y_fpred = classifier.predict(X_ftest)
+
+from sklearn.metrics import accuracy_score
+print(accuracy_score(y_ftest, y_fpred))
+
+
+from sklearn.svm import SVC
+classifier2 = SVC()
+classifier2.fit(X_ftrain,y_ftrain)
+
+y_fpred2=classifier2.predict(X_ftest)
+
+from sklearn import metrics
+
+cm = metrics.confusion_matrix(y_ftest, y_fpred2)
+acc = metrics.accuracy_score(y_ftest, y_fpred2)
+print(cm,acc)
